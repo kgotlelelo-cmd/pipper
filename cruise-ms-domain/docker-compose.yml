@@ -1,0 +1,30 @@
+version: "3.0"
+
+services: 
+  mongo:
+    image: mongo:3.6.3
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports: 
+      - "0.0.0.0:27017:27017"
+  
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: "27017"
+    ports:
+      - "0.0.0.0:8081:8081"
+    depends_on:
+      - mongo
+
+  cruise-ms-domain:
+    image: domain
+    container_name: domain-ms
+    depends_on:
+      - mongo
