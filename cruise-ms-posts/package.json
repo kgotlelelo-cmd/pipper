@@ -1,0 +1,17 @@
+{
+  "name": "cruise-ms-posts",
+  "version": "1.0.0",
+  "description": "\"deals with the posts\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js"
+  },
+  "author": "cruise",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.1"
+  }
+}
