@@ -14,4 +14,8 @@ public interface ClientRepository extends MongoRepository<Client,String> {
 
     @Query("{ 'username' : ?0 }")
     Optional<Client> findClientByUsername(String username);
+
+	Optional<Client> findByEmail(String email);
+
+	Optional<Client> findByUsername(String email);
 }
