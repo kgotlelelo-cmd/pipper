@@ -1,0 +1,92 @@
+{
+    "source": "mockoon:1.15.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 17,
+                "name": "cruise-ms-domain",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3001,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "cruise-ms-domain/clients",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n    {\n        \"id\": \"611515cba50a731a05005afe\",\n        \"username\": \"code bender\",\n        \"firstName\": \"kgotlelelo\",\n        \"lastName\": \"masenamela\",\n        \"bio\": \"Have a lovely day\",\n        \"email\": \"kmasenam@student.wethinkcode.co.za\",\n        \"gender\": \"MALE\",\n        \"dateOfBirth\": \"2021-08-12T14:36:27.846\",\n        \"posts\": [\n            {\n                \"id\": 0,\n                \"body\": \"hello world\",\n                \"likes\": 0\n            },\n            {\n                \"id\": 1,\n                \"body\": \"what are you doing\",\n                \"likes\": 0\n            },\n            {\n                \"id\": 0,\n                \"body\": \"hello man\",\n                \"likes\": 0\n            }\n        ]\n    },\n    {\n        \"id\": \"611515cba50a731a05005afe\",\n        \"username\": \"asmith\",\n        \"firstName\": \"anna\",\n        \"lastName\": \"smith\",\n        \"bio\": \"Have a lovely night\",\n        \"email\": \"kmasenam@student.wethinkcode.co.za\",\n        \"gender\": \"MALE\",\n        \"dateOfBirth\": \"2021-08-12T14:36:27.846\",\n        \"posts\": [\n            {\n                \"id\": 0,\n                \"body\": \"I an new here\",\n                \"likes\": 0\n            },\n            {\n                \"id\": 1,\n                \"body\": \"this place is boring\",\n                \"likes\": 0\n            },\n            {\n                \"id\": 0,\n                \"body\": \"hello man\",\n                \"likes\": 0\n            }\n        ]\n    },\n    {\n        \"id\": \"611515cba50a731a05005aff\",\n        \"username\": \"Don\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"bio\": \"another one\",\n        \"email\": \"kgotlelelomasenamela74@gmail.com\",\n        \"gender\": \"FEMALE\",\n        \"dateOfBirth\": \"2021-08-12T14:36:27.847\",\n        \"posts\": null\n    }\n]",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "cruise-ms-domain/client/register",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false,
+                                "fallbackTo404": false
+                            }
+                        ],
+                        "enabled": true,
+                        "randomResponse": false,
+                        "sequentialResponse": false
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "proxyRemovePrefix": false,
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "hostname": "0.0.0.0"
+            }
+        }
+    ]
+}

@@ -1,14 +1,15 @@
 const fetch = require('node-fetch');
+const logger = require('./logger');
 
 function callDomainApi(callback){
-
-    fetch('http://localhost:8080/cruise-ms-domain/clients')
+    logger.info("fetching data from domain application");
+    fetch(process.env.MOCKOON_URL)
         .then(res=>res.json())
         .then(posts)
         .then(callback)
-        .then(json => console.log(json)) //should put logger
+        .then(json => logger.debug(json))
         .catch((err)=>{
-            console.log(err)
+            logger.error(err);
         });
 }
 

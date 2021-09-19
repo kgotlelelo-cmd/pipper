@@ -1,2 +1,5 @@
 cruise-ms-posts/node_modules/
 cruise-ms-registration/node_modules/
+cruise-ms-posts/error.log
+cruise-ms-posts/logger.js
+cruise-ms-posts/combined.log
