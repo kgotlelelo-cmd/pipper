@@ -112,6 +112,45 @@ public class ClientRepositoryTest extends TestContainer {
 		assertEquals(clientDB.get().getEmail(), email);
 	}
 
+	@Test
+	public void findClientByUsername_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedUsername(){
+		var username = "USERNAME_FOR_TEST";
+		clientRepository.save(createClientWithSpecificUsername(username));
+
+		var clientDB = clientRepository.findClientByUsername(username);
+
+		assertNotNull(clientDB);
+		assertTrue(clientDB.isPresent());
+		assertEquals(clientDB.get().getUsername(), username);
+	}
+
+	@Test
+	public void findClientByUsername_NoExceptionIsThrowed_WhenUsernameIsEmpty() {
+		assertDoesNotThrow(() -> clientRepository.findClientByUsername(""));
+	}
+
+	/*
+	 * Nulls should be avoided in the service layer.
+	 */
+	@Test
+	public void findClientByUsername_NoExceptionIsThrowed_WhenUsernameIsNull() {
+		assertDoesNotThrow(() -> clientRepository.findClientByUsername(null));
+	}
+
+	@Test
+	@Disabled("This test is successful." +
+						"Need to decide between JSON-based query methods or simple query methods." +
+						"The two previous cases have the same result with this method")
+	public void findByUsername_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedUsername(){
+		var username = "USERNAME_FOR_TEST";
+		clientRepository.save(createClientWithSpecificUsername(username));
+
+		var clientDB = clientRepository.findByUsername(username);
+
+		assertNotNull(clientDB);
+		assertTrue(clientDB.isPresent());
+		assertEquals(clientDB.get().getUsername(), username);
+	}
 
 	//temporal
 	private static Client createClientWithSpecificEmail(String email){
