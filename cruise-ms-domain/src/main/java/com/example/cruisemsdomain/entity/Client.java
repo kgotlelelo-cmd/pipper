@@ -1,21 +1,22 @@
-package com.example.cruisemsdomain.Entity;
+package com.example.cruisemsdomain.entity;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.cruisemsdomain.model.Gender;
-import com.example.cruisemsdomain.model.post;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.example.cruisemsdomain.model.Post;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data //lombok
 @AllArgsConstructor
 @Document(collection = "client")
-public class client {
+public class Client {
 
     @Id
     private String id;
@@ -33,9 +34,9 @@ public class client {
     private Gender gender;
     private LocalDateTime dateOfBirth;
 
-    private List<post> posts;
+    private List<Post> posts;
 
-    public client(
+    public Client(
             String username,
             String firstName,
             String lastName,
@@ -43,7 +44,7 @@ public class client {
             String email,
             Gender gender,
             LocalDateTime dateOfBirth,
-            List<post> posts
+            List<Post> posts
     ) {
         this.username = username;
         this.firstName = firstName;
@@ -55,7 +56,7 @@ public class client {
         this.posts = posts;
     }
 
-    public client(
+    public Client(
             String username,
             String firstName,
             String lastName,
@@ -73,11 +74,11 @@ public class client {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public client(){
+    public Client(){
 
     }
 
-    public void addPost(post newPost){
+    public void addPost(Post newPost){
         this.posts.add(newPost);
     }
 }

@@ -1,9 +1,9 @@
-package com.example.cruisemsdomain.dummyData;
+package com.example.cruisemsdomain.dummy_data;
 
-import com.example.cruisemsdomain.Entity.client;
+import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.model.Gender;
-import com.example.cruisemsdomain.model.post;
-import com.example.cruisemsdomain.repository.clientRepository;
+import com.example.cruisemsdomain.model.Post;
+import com.example.cruisemsdomain.repository.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-public class dummyData {
+public class DummyData {
     @Bean
-    CommandLineRunner runner(clientRepository repository){
+    CommandLineRunner runner(ClientRepository repository){
         return args -> {
-            client dummyClient = new client(
+            Client dummyClient = new Client(
                     "code bender",
                     "kgotlelelo",
                     "masenamela",
@@ -24,13 +24,13 @@ public class dummyData {
                     "kmasenam@student.wethinkcode.co.za",
                     Gender.MALE,
                     LocalDateTime.now(),
-                    List.of(new post(
+                    List.of(new Post(
                             "hello world",
                             0
                     ))
             );
 
-            client dummy1Client = new client(
+            Client dummy1Client = new Client(
                     "Don",
                     "John",
                     "Doe",

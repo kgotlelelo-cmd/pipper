@@ -2,7 +2,7 @@ package com.example.cruisemsdomain.model;
 
 import org.springframework.data.annotation.Id;
 
-public class post {
+public class Post {
 
     @Id
     private int id;
@@ -11,18 +11,18 @@ public class post {
 
     private long likes;
 
-    public post(int id, String body, long likes) {
+    public Post(int id, String body, long likes) {
         this.id = id;
         this.body = body;
         this.likes = likes;
     }
 
-    public post(String body, long likes) {
+    public Post(String body, long likes) {
         this.body = body;
         this.likes = likes;
     }
 
-    public post(){}
+    public Post(){}
 
 
     public int getId() {
