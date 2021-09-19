@@ -72,6 +72,19 @@ public class ClientRepositoryTest extends TestContainer {
 		assertDoesNotThrow(() -> clientRepository.save(client));
 	}
 
+
+	//temporal
+	private static Client createClientWithSpecificEmail(String email){
+		var client = createClient();
+		client.setEmail(email);
+		return client;
+	}
+
+	//temporal
+	private static Client createClientWithSpecificUsername(String username){
+		var client = createClient();
+		client.setUsername(username);
+		return client;
 	}
 
 	private static Client createClient() {
