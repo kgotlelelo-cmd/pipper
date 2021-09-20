@@ -1,15 +1,17 @@
 package com.example.cruisemsdomain.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.repository.ClientRepository;
-import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-import java.util.Optional;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
@@ -35,13 +37,13 @@ public class ClientService {
 
     //find client by email
     public Optional<Client> findClientByEmail(String email){
-        return clientRepo.findClientByEmail(email).isPresent() ? clientRepo.findClientByEmail(email) : Optional.empty();
+        return clientRepo.findByEmail(email).isPresent() ? clientRepo.findByEmail(email) : Optional.empty();
     }
 
 
     //find client by username
     public Optional<Client> findClientByUsername(String username){
-        return clientRepo.findClientByUsername(username).isPresent() ? clientRepo.findClientByUsername(username) : Optional.empty();
+        return clientRepo.findByUsername(username).isPresent() ? clientRepo.findByUsername(username) : Optional.empty();
     }
 
     //post a status

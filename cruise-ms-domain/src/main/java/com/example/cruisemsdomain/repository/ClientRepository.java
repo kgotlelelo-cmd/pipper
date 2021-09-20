@@ -8,14 +8,9 @@ import java.util.Optional;
 
 public interface ClientRepository extends MongoRepository<Client,String> {
 
-    @Query("{ 'email' : ?0 }")
-    Optional<Client> findClientByEmail(String email);
-
-
-    @Query("{ 'username' : ?0 }")
-    Optional<Client> findClientByUsername(String username);
-
+	@Query("{ 'email' : ?0 }")
 	Optional<Client> findByEmail(String email);
 
-	Optional<Client> findByUsername(String email);
+	@Query("{ 'username' : ?0 }")
+	Optional<Client> findByUsername(String username);
 }
