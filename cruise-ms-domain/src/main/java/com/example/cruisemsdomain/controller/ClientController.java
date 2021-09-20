@@ -1,10 +1,12 @@
 package com.example.cruisemsdomain.controller;
 
 import com.example.cruisemsdomain.entity.Client;
+import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +39,11 @@ public class ClientController {
     public Optional<Client> fetchClientByUsername(@PathVariable String username){
         return service.findClientByUsername(username);
     }
+
+	  @GetMapping("/client/{id}/posts")
+		public ResponseEntity<List<Post>> getClientPosts(@PathVariable String id) {
+			return ResponseEntity.ok(service.getClientPosts(id));
+		}
 
     @PostMapping(value = "/client/register",produces = MediaType.APPLICATION_JSON_VALUE)
     public Client register(@RequestBody Client newClient){

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.cruisemsdomain.entity.Client;
+import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.repository.ClientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class ClientService {
     public Optional<Client> findClientById(String id){
         return clientRepo.findById(id).isPresent() ? clientRepo.findById(id) : Optional.empty();
     }
+
+	//find client by their id and return their posts
+		public List<Post> getClientPosts(String id) {
+			return findClientById(id).get().getPosts();
+		}
 
     //find client by email
     public Optional<Client> findClientByEmail(String email){
