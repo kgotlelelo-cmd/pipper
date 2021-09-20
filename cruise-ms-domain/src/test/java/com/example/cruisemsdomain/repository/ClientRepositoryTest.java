@@ -33,7 +33,7 @@ public class ClientRepositoryTest extends TestContainer {
 	private ClientRepository clientRepository;
 
 	@AfterEach
-	public void deleteArterTest(){
+	public void deleteAfterTest(){
 		clientRepository.deleteAll();
 	}
 
