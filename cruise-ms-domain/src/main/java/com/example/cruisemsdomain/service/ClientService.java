@@ -1,8 +1,7 @@
 package com.example.cruisemsdomain.service;
 
-
-import com.example.cruisemsdomain.Entity.client;
-import com.example.cruisemsdomain.repository.clientRepository;
+import com.example.cruisemsdomain.entity.Client;
+import com.example.cruisemsdomain.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
@@ -14,40 +13,40 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class clientService {
+public class ClientService {
 
     @Autowired
-    clientRepository clientRepo;
+    ClientRepository clientRepo;
 
     //get all clients in the database
-    public List<client> getAllClients(){
+    public List<Client> getAllClients(){
         return clientRepo.findAll();
     }
 
     //register a new client into the database
-    public client saveClient(client client){
+    public Client saveClient(Client client){
         return clientRepo.insert(client);
     }
 
     //find client by their id
-    public Optional<client> findClientById(String id){
+    public Optional<Client> findClientById(String id){
         return clientRepo.findById(id).isPresent() ? clientRepo.findById(id) : Optional.empty();
     }
 
     //find client by email
-    public Optional<client> findClientByEmail(String email){
+    public Optional<Client> findClientByEmail(String email){
         return clientRepo.findClientByEmail(email).isPresent() ? clientRepo.findClientByEmail(email) : Optional.empty();
     }
 
 
     //find client by username
-    public Optional<client> findClientByUsername(String username){
+    public Optional<Client> findClientByUsername(String username){
         return clientRepo.findClientByUsername(username).isPresent() ? clientRepo.findClientByUsername(username) : Optional.empty();
     }
 
     //post a status
     //need fixing
-    public client updatePost(client newClient,String id){
+    public Client updatePost(Client newClient,String id){
 
         return clientRepo.findById(id)
                 .map(client -> {
