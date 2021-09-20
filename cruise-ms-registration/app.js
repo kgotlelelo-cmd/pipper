@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const logger = require('./logger');
 require("dotenv").config();
 var bodyParser = require("body-parser");
 
@@ -11,5 +12,5 @@ app.use("/",indexRouter);
 const port=process.env.DEV_PORT;
 
 app.listen(port,()=>{
-    console.log(`running on port ${port}`)
+    logger.info(`running on port ${port}`);
 });

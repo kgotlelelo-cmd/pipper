@@ -1,10 +1,12 @@
 const express = require("express");
+const logger = require('./logger');
 const postToDomain = require("./postToDomain");
 const index = express.Router();
 
 
 index.post("/register",(req,res)=>{
-    console.log(req.body);
+    logger.info("register endpoint was called");
+    logger.debug(req.body);
     postToDomain(req.body)
     res.send({sucessful:true})
 });
