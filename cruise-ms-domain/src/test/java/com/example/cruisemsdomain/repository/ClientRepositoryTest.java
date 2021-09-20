@@ -15,7 +15,7 @@ import java.util.List;
 
 import com.example.cruisemsdomain.config.TestContainer;
 import com.example.cruisemsdomain.entity.Client;
-import com.example.cruisemsdomain.model.Post;
+import com.example.cruisemsdomain.entity.Post;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
@@ -137,10 +137,18 @@ public class ClientRepositoryTest extends TestContainer {
 	}
 
 	private static Client createClient() {
-		var post = new Post(randomInteger(), randomString(), randomLong());
+		var post = new Post(randomString(), randomLong());
 		List<Post> posts = List.of(post);
 
-		return new Client(randomString(), randomString(), randomString(), randomString(), randomString(), randomGender(),
-				LocalDateTime.now(), posts);
+		return Client.builder()
+			.username(randomString())
+			.firstName(randomString())
+			.lastName(randomString())
+			.bio(randomString())
+			.email(randomString())
+			.gender(randomGender())
+			.dateOfBirth(LocalDateTime.now())
+			.posts(posts)
+			.build();
 	}
 }
