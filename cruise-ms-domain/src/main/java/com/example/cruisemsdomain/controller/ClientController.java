@@ -30,15 +30,15 @@ public class ClientController {
         return service.findClientById(id);
     }
 
-//    @GetMapping(value = "/client/email/{email}")
-//    public Optional<Client> fetchClientByEmail(@PathVariable String email){
-//        return service.findClientByEmail(email);
-//    }
+    @GetMapping(value = "/client/email/{email}")
+    public Optional<Client> fetchClientByEmail(@PathVariable String email){
+        return service.findClientByEmail(email);
+    }
 
-//    @GetMapping(value = "/client/username/{username}")
-//    public Optional<Client> fetchClientByUsername(@PathVariable String username){
-//        return service.findClientByUsername(username);
-//    }
+    @GetMapping(value = "/client/username/{username}")
+    public Optional<Client> fetchClientByUsername(@PathVariable String username){
+        return service.findClientByUsername(username);
+    }
 
 	  @GetMapping("/client/{id}/posts")
 		public ResponseEntity<List<Post>> getClientPosts(@PathVariable Long id) {
@@ -51,7 +51,7 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/client/delete/{id}")
-    void deleteClient(@PathVariable long id){
+    void deleteClient(@PathVariable Long id){
         service.deleteClient(id);
     }
 
