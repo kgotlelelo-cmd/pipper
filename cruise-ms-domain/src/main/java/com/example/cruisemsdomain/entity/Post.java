@@ -35,4 +35,5 @@ public class Post {
             name = "client_id",
             nullable = false
     )
+    private Client client;
 }
