@@ -1,6 +1,9 @@
 package com.example.cruisemsdomain.repository;
 
 import static com.example.cruisemsdomain.Util.randomGender;
+
+import static com.example.cruisemsdomain.Util.randomInteger;
+
 import static com.example.cruisemsdomain.Util.randomLong;
 import static com.example.cruisemsdomain.Util.randomString;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -11,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 import javax.transaction.Transactional;
 
@@ -40,6 +44,7 @@ public class ClientRepositoryTest {
 	//	clientRepository.deleteAll();
 	//}
 
+
 	@Test
 	public void save_PersistAndReturnAClient_WhenSuccessful() {
 		var dbClient = clientRepository.save(CLIENT);
@@ -56,7 +61,7 @@ public class ClientRepositoryTest {
 
 	@Test
 	public void save_ThrownDataIntegrityViolationException_WhenClientIsEmpty() {
-		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> clientRepository.save(new Client()));
+		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> clientRepository.save(new Client())
 	}
 
 	@Test
@@ -75,6 +80,7 @@ public class ClientRepositoryTest {
 		assertDoesNotThrow(() -> clientRepository.save(client));
 	}
 
+                                                                                
 	@Test
 	public void findByEmail_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedEmail(){
 		var email = "EMAIL_FOR_TEST";
@@ -97,6 +103,7 @@ public class ClientRepositoryTest {
 	/*
 	 * Nulls should be avoided in the service layer.
 	 */
+
 	@Test
 	public void findByEmail_ReturnAnEmptyOptional_WhenEmailIsNull() {
 		var clientDB = clientRepository.findByEmail(null);
@@ -148,6 +155,7 @@ public class ClientRepositoryTest {
 	}
 
 	private static Client createClient() {
+
 		var client = Client.builder()
 			.username(randomString())
 			.firstName(randomString())

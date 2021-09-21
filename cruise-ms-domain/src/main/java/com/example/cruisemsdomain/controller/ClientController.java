@@ -40,6 +40,7 @@ public class ClientController {
         return service.findClientById(id);
     }
 
+
     @GetMapping(value = "/email/{email}")
     public Optional<Client> fetchClientByEmail(@PathVariable String email){
         return service.findClientByEmail(email);
@@ -67,6 +68,6 @@ public class ClientController {
 
     @PutMapping(value = "/{id}")
     Client postStatus(@RequestBody Client newClient,@PathVariable long id){
-        return service.updatePost(newClient,id);
+        return service.addPost(newClient,id);
     }
 }

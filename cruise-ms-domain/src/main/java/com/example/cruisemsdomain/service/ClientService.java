@@ -7,6 +7,9 @@ import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.repository.ClientRepository;
 
+import com.example.cruisemsdomain.repository.PostRepository;
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepo;
+
+    @Autowired
+    PostRepository postRepo;
 
     //get all clients in the database
     public List<Client> getAllClients(){
@@ -52,9 +58,10 @@ public class ClientService {
         return clientRepo.findByUsername(username).isPresent() ? clientRepo.findByUsername(username) : Optional.empty();
     }
 
+
     //post a status
     //need fixing
-    public Client updatePost(Client newClient,Long id){
+    public Client addPost(Client newClient,Long id){
 
         return clientRepo.findById(id)
                 .map(client -> {
@@ -75,5 +82,19 @@ public class ClientService {
 
     public void deleteClient(@PathVariable Long id){
         clientRepo.deleteById(id);
+    }
+
+    //Start of the post service functions
+
+    public Optional<Post> findPostById(Long id){
+        return postRepo.findById(id).isPresent() ? postRepo.findById(id):Optional.empty();
+    }
+
+    public List<Post> getAllPosts(){
+        return postRepo.findAll();
+    }
+
+    public void deletePostById(Long id){
+        postRepo.deleteById(id);
     }
 }
