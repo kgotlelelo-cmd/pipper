@@ -15,33 +15,31 @@ import java.util.List;
 public class DummyData {
 
 	@Bean
-	CommandLineRunner runner(ClientRepository repository){
+	CommandLineRunner runner(ClientRepository repository) {
 		return args -> {
-			Client dummyClient = new Client(
-                    "code bender",
-                    "kgotlelelo",
-                    "masenamela",
-                    "Have a lovely day",
-                    "kmasenam@student.wethinkcode.co.za",
-                    Gender.MALE,
-                    LocalDateTime.now(),
-                    List.of(new Post(
-                            "hello world",
-                            0
-                    ))
-            );
+			Client dummyClient = Client.builder()
+				.username("code bender")
+				.firstName("kgotlelelo")
+				.lastName("masenamela")
+				.bio("Have a lovely day")
+				.email("kmasenam@student.wethinkcode.co.za")
+				.gender(Gender.MALE)
+				.dateOfBirth(LocalDateTime.now())
+				.posts(List.of(Post.builder().body("hello world").likes(0).build()))
+				.build();
 
-            Client dummy1Client = new Client(
-                    "Don",
-                    "John",
-                    "Doe",
-                    "another one",
-                    "kgotlelelomasenamela74@gmail.com",
-                    Gender.FEMALE,
-                    LocalDateTime.now()
-            );
+			Client dummy1Client = Client.builder()
+				.username("Don")
+				.firstName("John")
+				.lastName("Doe")
+				.bio("another one")
+				.email("kgotlelelomasenamela74@gmail.com")
+				.gender(Gender.MALE)
+				.dateOfBirth(LocalDateTime.now())
+				.posts(List.of(Post.builder().body("a post").likes(0).build()))
+				.build();
 
-            repository.saveAll(List.of(dummyClient,dummy1Client));
-        };
+			repository.saveAll(List.of(dummyClient, dummy1Client));
+		};
 	}
 }
