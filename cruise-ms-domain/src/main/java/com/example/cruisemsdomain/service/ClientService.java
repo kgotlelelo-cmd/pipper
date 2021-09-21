@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 public class ClientService {
 
     @Autowired
-    ClientRepository clientRepo;
+    private ClientRepository clientRepo;
 
     //get all clients in the database
     public List<Client> getAllClients(){
