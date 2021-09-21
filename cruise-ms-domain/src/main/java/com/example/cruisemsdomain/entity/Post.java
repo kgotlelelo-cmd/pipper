@@ -1,6 +1,14 @@
 package com.example.cruisemsdomain.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +25,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postId")
+    @Column(name = "post_id")
     private Long id;
 
     @Column(
@@ -30,10 +38,26 @@ public class Post {
     )
     private long likes;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "client_id",
-            nullable = false
-    )
+	  @ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name = "client_id", nullable = false)
     private Client client;
+
+	  @Override
+	  public boolean equals(Object obj) {
+		  if (this == obj) return true;
+		  if (obj == null) return false;
+		  if (getClass() != obj.getClass()) return false;
+		  Post other = (Post) obj;
+		  if (body == null) {
+			  if (other.body != null)
+			  	return false;
+	  	} else if (!body.equals(other.body))
+			  return false;
+		  return true;
+	  }
+
+	  @Override
+	  public int hashCode() {
+		  return getClass().hashCode();
+	  }
 }

@@ -1,7 +1,17 @@
 package com.example.cruisemsdomain.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.example.cruisemsdomain.model.Gender;
 
@@ -9,8 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -66,11 +74,20 @@ public class Client {
     private LocalDateTime dateOfBirth;
 
     @OneToMany(
-            mappedBy = "client"
+							 mappedBy = "client",
+							 cascade = CascadeType.ALL,
+							 orphanRemoval = true
     )
-    private List<Post> posts;
+		@Builder.Default
+    private List<Post> posts = new ArrayList<>();
 
-    public void addPost(Post newPost){
-        this.posts.add(newPost);
+    public void addPost(Post post){
+        posts.add(post);
+				post.setClient(this);
     }
+
+	  public void removePost(Post post){
+			  posts.remove(post);
+			  post.setClient(null);
+		}
 }
