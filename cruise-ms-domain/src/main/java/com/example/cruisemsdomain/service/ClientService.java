@@ -37,7 +37,7 @@ public class ClientService {
     }
 
 	//find client by their id and return their posts
-		public List<Post> getClientPosts(String id) {
+		public List<Post> getClientPosts(Long id) {
 			return findClientById(id).get().getPosts();
 		}
 

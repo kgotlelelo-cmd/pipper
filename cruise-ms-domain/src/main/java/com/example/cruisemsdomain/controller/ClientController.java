@@ -26,7 +26,7 @@ public class ClientController {
     }
 
     @GetMapping(value ="/client/{id}")
-    public Optional<Client> fetchClientById(@PathVariable long id){
+    public Optional<Client> fetchClientById(@PathVariable Long id){
         return service.findClientById(id);
     }
 
@@ -41,7 +41,7 @@ public class ClientController {
 //    }
 
 	  @GetMapping("/client/{id}/posts")
-		public ResponseEntity<List<Post>> getClientPosts(@PathVariable String id) {
+		public ResponseEntity<List<Post>> getClientPosts(@PathVariable Long id) {
 			return ResponseEntity.ok(service.getClientPosts(id));
 		}
 
