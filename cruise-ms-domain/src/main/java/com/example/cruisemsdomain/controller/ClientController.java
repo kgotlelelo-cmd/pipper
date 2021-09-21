@@ -50,6 +50,6 @@ public class ClientController {
 
     @PutMapping(value = "/client/post/{id}")
     Client postStatus(@RequestBody Client newClient,@PathVariable long id){
-        return service.updatePost(newClient,id);
+        return service.addPost(newClient,id);
     }
 }
