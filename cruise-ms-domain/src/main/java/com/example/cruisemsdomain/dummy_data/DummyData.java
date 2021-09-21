@@ -2,7 +2,7 @@ package com.example.cruisemsdomain.dummy_data;
 
 import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.model.Gender;
-import com.example.cruisemsdomain.model.Post;
+import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.repository.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +40,7 @@ public class DummyData {
                     LocalDateTime.now()
             );
 
-            repository.insert(List.of(dummyClient,dummy1Client));
+            repository.saveAll(List.of(dummyClient,dummy1Client));
         };
     }
 }
