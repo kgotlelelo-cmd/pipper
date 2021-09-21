@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "author": "cruise",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fetch": "^1.1.0",
+    "jest": "^27.2.1",
     "node-fetch": "^2.6.1",
+    "supertest": "^6.1.6",
     "winston": "^3.3.3"
   }
 }

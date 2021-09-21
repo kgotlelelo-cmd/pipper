@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const logger = require('./logger');
+const logger = require('../config/logger');
 
 function callDomainApi(callback){
     logger.info("fetching data from domain application");
