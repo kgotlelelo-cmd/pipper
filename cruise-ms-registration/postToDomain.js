@@ -1,13 +1,17 @@
 const fetch = require("node-fetch");
+logger = require('./logger');
 
 function postToDomain(body){
-    console.log(typeof(body));
-    fetch('http://localhost:8080/cruise-ms-domain/client/register',{
+    logger.info("Posting into domain service");
+    fetch(process.env.MOCK_REG_URL,{
         method: 'post',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },
     }).then(res => res.json())
-    .then(json => console.log(json));
+    .then(json => logger.debug(json))
+    .catch((err)=>{
+        logger.error(err);
+    });
 }
 
 module.exports = postToDomain;

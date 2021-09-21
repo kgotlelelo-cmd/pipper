@@ -17,29 +17,31 @@ public class DummyData {
 	@Bean
 	CommandLineRunner runner(ClientRepository repository){
 		return args -> {
-			var dummyClient = Client.builder()
-				.username("code bender")
-				.firstName("kgotlelelo")
-				.lastName("masenamela")
-				.bio("Have a lovely day")
-				.email("kmasenam@student.wethinkcode.co.za")
-				.gender(Gender.MALE)
-				.dateOfBirth(LocalDateTime.now())
-				.posts(List.of(new Post("hello world", 0), new Post("Second", 1)))
-				.build();
+			Client dummyClient = new Client(
+                    "code bender",
+                    "kgotlelelo",
+                    "masenamela",
+                    "Have a lovely day",
+                    "kmasenam@student.wethinkcode.co.za",
+                    Gender.MALE,
+                    LocalDateTime.now(),
+                    List.of(new Post(
+                            "hello world",
+                            0
+                    ))
+            );
 
+            Client dummy1Client = new Client(
+                    "Don",
+                    "John",
+                    "Doe",
+                    "another one",
+                    "kgotlelelomasenamela74@gmail.com",
+                    Gender.FEMALE,
+                    LocalDateTime.now()
+            );
 
-			var dummyClient2 = Client.builder()
-				.username("Don")
-				.firstName("John")
-				.lastName("Doe")
-				.bio("another one")
-				.email("kgotlelelomasenamela74@gmail.com")
-				.gender(Gender.MALE)
-				.dateOfBirth(LocalDateTime.now())
-				.build();
-
-			repository.insert(List.of(dummyClient,dummyClient2));
-		};
+            repository.saveAll(List.of(dummyClient,dummy1Client));
+        };
 	}
 }

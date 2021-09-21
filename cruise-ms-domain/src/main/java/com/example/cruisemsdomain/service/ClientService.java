@@ -28,11 +28,11 @@ public class ClientService {
 
     //register a new client into the database
     public Client saveClient(Client client){
-        return clientRepo.insert(client);
+        return clientRepo.save(client);
     }
 
     //find client by their id
-    public Optional<Client> findClientById(String id){
+    public Optional<Client> findClientById(Long id){
         return clientRepo.findById(id).isPresent() ? clientRepo.findById(id) : Optional.empty();
     }
 
@@ -42,19 +42,19 @@ public class ClientService {
 		}
 
     //find client by email
-    public Optional<Client> findClientByEmail(String email){
-        return clientRepo.findByEmail(email).isPresent() ? clientRepo.findByEmail(email) : Optional.empty();
-    }
+//    public Optional<Client> findClientByEmail(String email){
+//        return clientRepo.findClientByEmail(email).isPresent() ? clientRepo.findClientByEmail(email) : Optional.empty();
+//    }
 
 
     //find client by username
-    public Optional<Client> findClientByUsername(String username){
-        return clientRepo.findByUsername(username).isPresent() ? clientRepo.findByUsername(username) : Optional.empty();
-    }
+//    public Optional<Client> findClientByUsername(String username){
+//        return clientRepo.findClientByUsername(username).isPresent() ? clientRepo.findClientByUsername(username) : Optional.empty();
+//    }
 
     //post a status
     //need fixing
-    public Client updatePost(Client newClient,String id){
+    public Client updatePost(Client newClient,Long id){
 
         return clientRepo.findById(id)
                 .map(client -> {
@@ -73,7 +73,7 @@ public class ClientService {
                 );
     }
 
-    public void deleteClient(@PathVariable String id){
+    public void deleteClient(@PathVariable Long id){
         clientRepo.deleteById(id);
     }
 }

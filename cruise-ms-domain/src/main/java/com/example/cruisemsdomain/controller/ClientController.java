@@ -26,19 +26,19 @@ public class ClientController {
     }
 
     @GetMapping(value ="/client/{id}")
-    public Optional<Client> fetchClientById(@PathVariable String id){
+    public Optional<Client> fetchClientById(@PathVariable long id){
         return service.findClientById(id);
     }
 
-    @GetMapping(value = "/client/email/{email}")
-    public Optional<Client> fetchClientByEmail(@PathVariable String email){
-        return service.findClientByEmail(email);
-    }
+//    @GetMapping(value = "/client/email/{email}")
+//    public Optional<Client> fetchClientByEmail(@PathVariable String email){
+//        return service.findClientByEmail(email);
+//    }
 
-    @GetMapping(value = "/client/username/{username}")
-    public Optional<Client> fetchClientByUsername(@PathVariable String username){
-        return service.findClientByUsername(username);
-    }
+//    @GetMapping(value = "/client/username/{username}")
+//    public Optional<Client> fetchClientByUsername(@PathVariable String username){
+//        return service.findClientByUsername(username);
+//    }
 
 	  @GetMapping("/client/{id}/posts")
 		public ResponseEntity<List<Post>> getClientPosts(@PathVariable String id) {
@@ -51,12 +51,12 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/client/delete/{id}")
-    void deleteClient(@PathVariable String id){
+    void deleteClient(@PathVariable long id){
         service.deleteClient(id);
     }
 
     @PutMapping(value = "/client/post/{id}")
-    Client postStatus(@RequestBody Client newClient,@PathVariable String id){
+    Client postStatus(@RequestBody Client newClient,@PathVariable long id){
         return service.updatePost(newClient,id);
     }
 }
