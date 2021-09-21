@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -66,24 +69,6 @@ public class Client {
             mappedBy = "client"
     )
     private List<Post> posts;
-
-    public Client(
-            String username,
-            String firstName,
-            String lastName,
-            String bio,
-            String email,
-            Gender gender,
-            LocalDateTime dateOfBirth
-    ) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public void addPost(Post newPost){
         this.posts.add(newPost);
