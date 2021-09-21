@@ -30,7 +30,7 @@ public class ClientController {
 
     @GetMapping(value = "/client/email/{email}")
     public Optional<Client> fetchClientByEmail(@PathVariable String email){
-        return service.findClientByEmail(email);
+        return service.findByEmail(email);
     }
 
     @PostMapping(value = "/client/register",produces = MediaType.APPLICATION_JSON_VALUE)
