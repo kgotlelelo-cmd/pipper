@@ -4,36 +4,76 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.cruisemsdomain.model.Gender;
-import com.example.cruisemsdomain.model.Post;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data //lombok
 @AllArgsConstructor
-@Document(collection = "client")
+@Entity()
+@Table(name = "CLIENT")
 public class Client {
 
     @Id
-    private String id;
+    @SequenceGenerator(
+            name = "CLIENT_sequence",
+            sequenceName = "CLIENT_sequence",
+            allocationSize = 1
+    )
 
-    @Indexed(unique = true)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "CLIENT_sequence"
+    )
+
+    @Column(name = "clientId")
+    private Long id;
+
+    @Column(
+            name = "username",
+            nullable = false,
+            length = 20
+    )
     private String username;
 
+    @Column(
+            name = "firstName",
+            nullable = false,
+            length = 20
+    )
     private String firstName;
+
+    @Column(
+            name = "secondName",
+            nullable = false,
+            length = 20
+    )
     private String lastName;
+
+    @Column(
+            name = "bio"
+    )
     private String bio;
 
-    @Indexed(unique = true)
+    @Column(
+            name = "email",
+            nullable = false,
+            unique = true
+    )
     private String email;
 
+    @Column(
+            name = "gender"
+    )
     private Gender gender;
+
     private LocalDateTime dateOfBirth;
 
+    @OneToMany(
+            mappedBy = "client"
+    )
     private List<Post> posts;
 
     public Client(
