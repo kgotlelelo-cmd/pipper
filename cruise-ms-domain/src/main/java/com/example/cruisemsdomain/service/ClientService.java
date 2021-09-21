@@ -39,15 +39,10 @@ public class ClientService {
     }
 
     //find client by email
-//    public Optional<Client> findClientByEmail(String email){
-//        return clientRepo.findClientByEmail(email).isPresent() ? clientRepo.findClientByEmail(email) : Optional.empty();
-//    }
+    public Optional<Client> findClientByEmail(String email){
+        return clientRepo.findClientByEmail(email).isPresent() ? clientRepo.findClientByEmail(email) : Optional.empty();
+    }
 
-
-    //find client by username
-//    public Optional<Client> findClientByUsername(String username){
-//        return clientRepo.findClientByUsername(username).isPresent() ? clientRepo.findClientByUsername(username) : Optional.empty();
-//    }
 
     //post a status
     //need fixing

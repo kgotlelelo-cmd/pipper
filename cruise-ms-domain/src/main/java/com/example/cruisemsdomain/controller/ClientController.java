@@ -28,15 +28,10 @@ public class ClientController {
         return service.findClientById(id);
     }
 
-//    @GetMapping(value = "/client/email/{email}")
-//    public Optional<Client> fetchClientByEmail(@PathVariable String email){
-//        return service.findClientByEmail(email);
-//    }
-
-//    @GetMapping(value = "/client/username/{username}")
-//    public Optional<Client> fetchClientByUsername(@PathVariable String username){
-//        return service.findClientByUsername(username);
-//    }
+    @GetMapping(value = "/client/email/{email}")
+    public Optional<Client> fetchClientByEmail(@PathVariable String email){
+        return service.findClientByEmail(email);
+    }
 
     @PostMapping(value = "/client/register",produces = MediaType.APPLICATION_JSON_VALUE)
     public Client register(@RequestBody Client newClient){
