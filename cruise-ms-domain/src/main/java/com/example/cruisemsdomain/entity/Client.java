@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.cruisemsdomain.model.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -70,12 +71,13 @@ public class Client {
 
     private LocalDateTime dateOfBirth;
 
+		@Builder.Default
     @OneToMany(
 							 mappedBy = "client",
 							 cascade = CascadeType.ALL,
 							 orphanRemoval = true
-    )
-		@Builder.Default
+							 )
+		@JsonIgnoreProperties("client")
     private List<Post> posts = new ArrayList<>();
 
     public void addPost(Post post){

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,6 +42,7 @@ public class Post {
 
 	  @ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "client_id", nullable = false)
+		@JsonIgnore
     private Client client;
 
 	  @Override
