@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Component
 public class DummyData {
@@ -17,7 +16,7 @@ public class DummyData {
 	@Bean
 	CommandLineRunner runner(ClientRepository repository) {
 		return args -> {
-			Client dummyClient = Client.builder()
+			var dummyClient = Client.builder()
 				.username("code bender")
 				.firstName("kgotlelelo")
 				.lastName("masenamela")
@@ -25,10 +24,10 @@ public class DummyData {
 				.email("kmasenam@student.wethinkcode.co.za")
 				.gender(Gender.MALE)
 				.dateOfBirth(LocalDateTime.now())
-				.posts(List.of(Post.builder().body("hello world").likes(0).build()))
 				.build();
+			dummyClient.addPost(Post.builder().body("hello world").likes(0).build());
 
-			Client dummy1Client = Client.builder()
+			var dummy1Client = Client.builder()
 				.username("Don")
 				.firstName("John")
 				.lastName("Doe")
@@ -36,10 +35,11 @@ public class DummyData {
 				.email("kgotlelelomasenamela74@gmail.com")
 				.gender(Gender.MALE)
 				.dateOfBirth(LocalDateTime.now())
-				.posts(List.of(Post.builder().body("a post").likes(0).build()))
 				.build();
+			dummy1Client.addPost(Post.builder().body("a post").likes(0).build());
 
-			repository.saveAll(List.of(dummyClient, dummy1Client));
+			repository.save(dummyClient);
+			repository.save(dummy1Client);
 		};
 	}
 }
