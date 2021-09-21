@@ -4,11 +4,11 @@ server:
 spring:
   jpa:
     properties:
-      hibernate
+      hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: update
-	show-sql: true
-  datasource
+        show-sql: true
+  datasource:
     url: jdbc:postgresql://${POSTGRES_HOSTNAME:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cruise}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:12345}
@@ -20,14 +20,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
-	exclude:
+        include: "*"
+        exclude: ""
 
 #Exposing Actuator endpoints over JMX
     jmx:
       exposure:
-        include: *
-	exclude:
+        include: "*"
+        exclude: ""
 
 #HEALTH ENDPOINT DETAILS
     health:
