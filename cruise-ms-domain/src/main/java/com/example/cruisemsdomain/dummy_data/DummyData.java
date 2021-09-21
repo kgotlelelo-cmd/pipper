@@ -25,7 +25,7 @@ public class DummyData {
 				.gender(Gender.MALE)
 				.dateOfBirth(LocalDateTime.now())
 				.build();
-			dummyClient.addPost(Post.builder().body("hello world").likes(0).build());
+			dummyClient.addPost(Post.builder().body("hello world").likes(0L).build());
 
 			var dummy1Client = Client.builder()
 				.username("Don")
@@ -36,7 +36,7 @@ public class DummyData {
 				.gender(Gender.MALE)
 				.dateOfBirth(LocalDateTime.now())
 				.build();
-			dummy1Client.addPost(Post.builder().body("a post").likes(0).build());
+			dummy1Client.addPost(Post.builder().body("a post").likes(0L).build());
 
 			repository.save(dummyClient);
 			repository.save(dummy1Client);
