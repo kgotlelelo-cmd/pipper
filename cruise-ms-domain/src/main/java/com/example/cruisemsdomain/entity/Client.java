@@ -35,22 +35,19 @@ public class Client {
 
     @Column(
             name = "username",
-            nullable = false,
-            length = 20
+            nullable = false
     )
     private String username;
 
     @Column(
             name = "first_name",
-            nullable = false,
-            length = 20
+            nullable = false
     )
     private String firstName;
 
     @Column(
             name = "second_name",
-            nullable = false,
-            length = 20
+            nullable = false
     )
     private String lastName;
 
