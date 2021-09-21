@@ -61,7 +61,7 @@ public class ClientRepositoryTest {
 
 	@Test
 	public void save_ThrownDataIntegrityViolationException_WhenClientIsEmpty() {
-		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> clientRepository.save(new Client())
+		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> clientRepository.save(new Client()));
 	}
 
 	@Test
