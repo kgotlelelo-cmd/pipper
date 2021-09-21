@@ -1,0 +1,43 @@
+server:
+  port: 8085
+
+spring:
+  jpa:
+    properties:
+      hibernate
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+	show-sql: true
+  datasource
+    url: jdbc:postgresql://${POSTGRES_HOSTNAME:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cruise}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:12345}
+    initialization-mode: always
+    initialize: true
+
+#Exposing Actuator endpoints over HTTP
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+	exclude:
+
+#Exposing Actuator endpoints over JMX
+    jmx:
+      exposure:
+        include: *
+	exclude:
+
+#HEALTH ENDPOINT DETAILS
+    health:
+      show-details: always
+
+#INFO ENDPOINT CONFIGURATION
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java.version: @java.version@
