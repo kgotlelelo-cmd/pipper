@@ -1,54 +1,54 @@
 package com.example.cruisemsdomain.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.example.cruisemsdomain.model.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-@Data //lombok
+@Data
 @AllArgsConstructor
-@Entity()
-@Table(name = "CLIENT")
+@NoArgsConstructor
+@Builder
+@Entity
+@Table(name = "clients")
 public class Client {
 
     @Id
-    @SequenceGenerator(
-            name = "CLIENT_sequence",
-            sequenceName = "CLIENT_sequence",
-            allocationSize = 1
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "CLIENT_sequence"
-    )
-
-    @Column(name = "clientId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id")
     private Long id;
 
     @Column(
             name = "username",
-            nullable = false,
-            length = 20
+            nullable = false
     )
     private String username;
 
     @Column(
-            name = "firstName",
-            nullable = false,
-            length = 20
+            name = "first_name",
+            nullable = false
     )
     private String firstName;
 
     @Column(
-            name = "secondName",
-            nullable = false,
-            length = 20
+            name = "second_name",
+            nullable = false
     )
     private String lastName;
 
@@ -71,54 +71,22 @@ public class Client {
 
     private LocalDateTime dateOfBirth;
 
+		@Builder.Default
     @OneToMany(
-            mappedBy = "client"
-    )
-    private List<Post> posts;
+							 mappedBy = "client",
+							 cascade = CascadeType.ALL,
+							 orphanRemoval = true
+							 )
+		@JsonIgnoreProperties("client")
+    private List<Post> posts = new ArrayList<>();
 
-    public Client(
-            String username,
-            String firstName,
-            String lastName,
-            String bio,
-            String email,
-            Gender gender,
-            LocalDateTime dateOfBirth,
-            List<Post> posts
-    ) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.posts = posts;
+    public void addPost(Post post){
+        posts.add(post);
+				post.setClient(this);
     }
 
-    public Client(
-            String username,
-            String firstName,
-            String lastName,
-            String bio,
-            String email,
-            Gender gender,
-            LocalDateTime dateOfBirth
-    ) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Client(){
-
-    }
-
-    public void addPost(Post newPost){
-        this.posts.add(newPost);
-    }
+	  public void removePost(Post post){
+			  posts.remove(post);
+			  post.setClient(null);
+		}
 }

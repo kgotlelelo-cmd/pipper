@@ -1,24 +1,28 @@
 package com.example.cruisemsdomain.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.repository.ClientRepository;
+
 import com.example.cruisemsdomain.repository.PostRepository;
 import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-import java.util.Optional;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
 public class ClientService {
 
     @Autowired
-    ClientRepository clientRepo;
+    private ClientRepository clientRepo;
 
     @Autowired
     PostRepository postRepo;
@@ -38,9 +42,20 @@ public class ClientService {
         return clientRepo.findById(id).isPresent() ? clientRepo.findById(id) : Optional.empty();
     }
 
+	//find client by their id and return their posts
+		public List<Post> getClientPosts(Long id) {
+			return findClientById(id).get().getPosts();
+		}
+
     //find client by email
-    public Optional<Client> findByEmail(String email){
+    public Optional<Client> findClientByEmail(String email){
         return clientRepo.findByEmail(email).isPresent() ? clientRepo.findByEmail(email) : Optional.empty();
+    }
+
+
+    //find client by username
+    public Optional<Client> findClientByUsername(String username){
+        return clientRepo.findByUsername(username).isPresent() ? clientRepo.findByUsername(username) : Optional.empty();
     }
 
 

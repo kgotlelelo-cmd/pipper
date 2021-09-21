@@ -1,7 +1,9 @@
 package com.example.cruisemsdomain.repository;
 
 import static com.example.cruisemsdomain.Util.randomGender;
+
 import static com.example.cruisemsdomain.Util.randomInteger;
+
 import static com.example.cruisemsdomain.Util.randomLong;
 import static com.example.cruisemsdomain.Util.randomString;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -13,29 +15,35 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.example.cruisemsdomain.config.TestContainer;
+
+import javax.transaction.Transactional;
+
 import com.example.cruisemsdomain.entity.Client;
 import com.example.cruisemsdomain.entity.Post;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 
-@DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
-public class ClientRepositoryTest extends TestContainer {
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Transactional
+public class ClientRepositoryTest {
 
 	private static final Client CLIENT = createClient();
 
 	@Autowired
 	private ClientRepository clientRepository;
 
-	@AfterEach
-	public void deleteArterTest(){
-		clientRepository.deleteAll();
-	}
+	//@AfterEach
+	//public void deleteArterTest(){
+	//	clientRepository.deleteAll();
+	//}
+
 
 	@Test
 	public void save_PersistAndReturnAClient_WhenSuccessful() {
@@ -47,13 +55,13 @@ public class ClientRepositoryTest extends TestContainer {
 	}
 
 	@Test
-	public void save_ThrownIllegalArgumentException_WhenClientIsNull() {
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> clientRepository.save(null));
+	public void save_ThrownInvalidDataAccessApiUsageException_WhenClientIsNull() {
+		assertThatExceptionOfType(InvalidDataAccessApiUsageException.class).isThrownBy(() -> clientRepository.save(null));
 	}
 
 	@Test
-	public void save_NoExceptionIsThrowed_WhenClientIsEmpty() {
-		assertDoesNotThrow(() -> clientRepository.save(new Client()));
+	public void save_ThrownDataIntegrityViolationException_WhenClientIsEmpty() {
+		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(() -> clientRepository.save(new Client())
 	}
 
 	@Test
@@ -72,35 +80,8 @@ public class ClientRepositoryTest extends TestContainer {
 		assertDoesNotThrow(() -> clientRepository.save(client));
 	}
 
-//	@Test
-//	public void findClientByEmail_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedEmail(){
-//		var email = "EMAIL_FOR_TEST";
-//		clientRepository.save(createClientWithSpecificEmail(email));
-//
-//		var clientDB = clientRepository.findClientByEmail(email);
-//
-//		assertNotNull(clientDB);
-//		assertTrue(clientDB.isPresent());
-//		assertEquals(clientDB.get().getEmail(), email);
-//	}
-
-//	@Test
-//	public void findClientByEmail_NoExceptionIsThrowed_WhenEmailIsEmpty() {
-//		assertDoesNotThrow(() -> clientRepository.findClientByEmail(""));
-//	}
-
-	/*
-	 * Nulls should be avoided in the service layer.
-	 */
-//	@Test
-//	public void findClientByEmail_NoExceptionIsThrowed_WhenEmailIsNull() {
-//		assertDoesNotThrow(() -> clientRepository.findClientByEmail(null));
-//	}
-
+                                                                                
 	@Test
-	@Disabled("This test is successful." +
-						"Need to decide between JSON-based query methods or simple query methods." +
-						"The two previous cases have the same result with this method")
 	public void findByEmail_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedEmail(){
 		var email = "EMAIL_FOR_TEST";
 		clientRepository.save(createClientWithSpecificEmail(email));
@@ -112,45 +93,52 @@ public class ClientRepositoryTest extends TestContainer {
 		assertEquals(clientDB.get().getEmail(), email);
 	}
 
-//	@Test
-//	public void findClientByUsername_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedUsername(){
-//		var username = "USERNAME_FOR_TEST";
-//		clientRepository.save(createClientWithSpecificUsername(username));
-//
-//		var clientDB = clientRepository.findClientByUsername(username);
-//
-//		assertNotNull(clientDB);
-//		assertTrue(clientDB.isPresent());
-//		assertEquals(clientDB.get().getUsername(), username);
-//	}
+	@Test
+	public void findByEmail_ReturnAnEmptyOptional_WhenEmailIsEmpty() {
+		var clientDB = clientRepository.findByEmail("");
 
-//	@Test
-//	public void findClientByUsername_NoExceptionIsThrowed_WhenUsernameIsEmpty() {
-//		assertDoesNotThrow(() -> clientRepository.findClientByUsername(""));
-//	}
-//
-//	/*
-//	 * Nulls should be avoided in the service layer.
-//	 */
-//	@Test
-//	public void findClientByUsername_NoExceptionIsThrowed_WhenUsernameIsNull() {
-//		assertDoesNotThrow(() -> clientRepository.findClientByUsername(null));
-//	}
+		assertTrue(clientDB.isEmpty());
+	}
 
-//	@Test
-//	@Disabled("This test is successful." +
-//						"Need to decide between JSON-based query methods or simple query methods." +
-//						"The two previous cases have the same result with this method")
-//	public void findByUsername_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedUsername(){
-//		var username = "USERNAME_FOR_TEST";
-//		clientRepository.save(createClientWithSpecificUsername(username));
-//
-//		var clientDB = clientRepository.findByUsername(username);
-//
-//		assertNotNull(clientDB);
-//		assertTrue(clientDB.isPresent());
-//		assertEquals(clientDB.get().getUsername(), username);
-//	}
+	/*
+	 * Nulls should be avoided in the service layer.
+	 */
+
+	@Test
+	public void findByEmail_ReturnAnEmptyOptional_WhenEmailIsNull() {
+		var clientDB = clientRepository.findByEmail(null);
+
+		assertTrue(clientDB.isEmpty());
+	}
+
+	@Test
+	public void findByUsername_ReturnAPresentOptionalOfClient_WhenAPersistedClientHasTheSpecifiedUsername(){
+		var username = "USERNAME_FOR_TEST";
+		clientRepository.save(createClientWithSpecificUsername(username));
+
+		var clientDB = clientRepository.findByUsername(username);
+
+		assertNotNull(clientDB);
+		assertTrue(clientDB.isPresent());
+		assertEquals(clientDB.get().getUsername(), username);
+	}
+
+	@Test
+	public void findByUsername_ReturnAnEmptyOptional_WhenEmailIsEmpty() {
+		var clientDB = clientRepository.findByUsername("");
+
+		assertTrue(clientDB.isEmpty());
+	}
+
+	/*
+	 * Nulls should be avoided in the service layer.
+	 */
+	@Test
+	public void findByUsername_ReturnAnEmptyOptional_WhenEmailIsNull() {
+		var clientDB = clientRepository.findByUsername(null);
+
+		assertTrue(clientDB.isEmpty());
+	}
 
 	//temporal
 	private static Client createClientWithSpecificEmail(String email){
@@ -167,10 +155,18 @@ public class ClientRepositoryTest extends TestContainer {
 	}
 
 	private static Client createClient() {
-		var post = new Post(randomLong(), randomString(), randomLong());
-		List<Post> posts = List.of(post);
 
-		return new Client(randomString(), randomString(), randomString(), randomString(), randomString(), randomGender(),
-				LocalDateTime.now(), posts);
+		var client = Client.builder()
+			.username(randomString())
+			.firstName(randomString())
+			.lastName(randomString())
+			.bio(randomString())
+			.email(randomString())
+			.gender(randomGender())
+			.dateOfBirth(LocalDateTime.now())
+			.build();
+
+		client.addPost(Post.builder().body(randomString()).likes(randomLong()).build());
+		return client;
 	}
 }

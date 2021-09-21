@@ -9,38 +9,37 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Component
 public class DummyData {
-    @Bean
-    CommandLineRunner runner(ClientRepository repository){
-        return args -> {
-            Client dummyClient = new Client(
-                    "code bender",
-                    "kgotlelelo",
-                    "masenamela",
-                    "Have a lovely day",
-                    "kmasenam@student.wethinkcode.co.za",
-                    Gender.MALE,
-                    LocalDateTime.now(),
-                    List.of(new Post(
-                            "hello world",
-                            0
-                    ))
-            );
 
-            Client dummy1Client = new Client(
-                    "Don",
-                    "John",
-                    "Doe",
-                    "another one",
-                    "kgotlelelomasenamela74@gmail.com",
-                    Gender.FEMALE,
-                    LocalDateTime.now()
-            );
+	@Bean
+	CommandLineRunner runner(ClientRepository repository) {
+		return args -> {
+			var dummyClient = Client.builder()
+				.username("code bender")
+				.firstName("kgotlelelo")
+				.lastName("masenamela")
+				.bio("Have a lovely day")
+				.email("kmasenam@student.wethinkcode.co.za")
+				.gender(Gender.MALE)
+				.dateOfBirth(LocalDateTime.now())
+				.build();
+			dummyClient.addPost(Post.builder().body("hello world").likes(0L).build());
 
-            repository.saveAll(List.of(dummyClient,dummy1Client));
-        };
-    }
+			var dummy1Client = Client.builder()
+				.username("Don")
+				.firstName("John")
+				.lastName("Doe")
+				.bio("another one")
+				.email("kgotlelelomasenamela74@gmail.com")
+				.gender(Gender.MALE)
+				.dateOfBirth(LocalDateTime.now())
+				.build();
+			dummy1Client.addPost(Post.builder().body("a post").likes(0L).build());
+
+			repository.save(dummyClient);
+			repository.save(dummy1Client);
+		};
+	}
 }

@@ -1,0 +1,55 @@
+# No version is needed to use compose especification
+services: 
+  db:
+    container_name: ${POSTGRES_HOSTNAME}
+    hostname: ${POSTGRES_HOSTNAME}
+    image: "${POSTGRES_IMAGE}"
+    env_file:
+      - ./env/postgresql.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    ports: 
+      - "0.0.0.0:${POSTGRES_PORT}:${POSTGRES_PORT}"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+  
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "0.0.0.0:8080:8080"
+    depends_on:
+      - db
+
+  cruise-ms-domain:
+    container_name: ${BACKEND_SERVICE_HOST_NAME}
+    build:
+      context: ./cruise-ms-domain
+      dockerfile: ./Dockerfile
+    image: ${BACKEND_SERVICE_IMAGE}
+    env_file:
+      - ./env/postgresql.env
+    hostname: ${BACKEND_SERVICE_HOST_NAME}
+    user: ${BACKEND_SERVICE_HOST_NAME}
+    ports: 
+      - "0.0.0.0:${BACKEND_SERVICE_EXTERNAL_PORT}:${BACKEND_SERVICE_PORT}"
+    cap_drop:
+      - ALL
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 170M
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres:
