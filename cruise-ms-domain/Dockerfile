@@ -1,11 +1,16 @@
-FROM openjdk:11
+FROM maven:3.8.2-jdk-11-openj9 AS builder
+WORKDIR /app
+COPY ./pom.xml .
+RUN mvn dependency:resolve
+COPY ./src ./src
+RUN mvn install -DskipTests
+RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../../target/*.jar)
 
-ARG JAR_FILE=target/*.jar
-
-RUN mkdir -p /domain/app/
-
-COPY ${JAR_FILE} /domain/app/
-
-WORKDIR /domain/app/
-
-CMD ["java", "-jar", "cruise-ms-domain-0.0.1-SNAPSHOT.jar"]
+FROM adoptopenjdk/openjdk11-openj9:x86_64-alpine-jre-11.0.12_7_openj9-0.27.0
+ENV DEPENDENCY=/app/build/dependency
+RUN addgroup -S spring && adduser -S cruise-ms-domain-service -G spring
+WORKDIR /cruise-ms-domain-service
+COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib ./app/lib
+COPY --from=builder ${DEPENDENCY}/META-INF ./app/META-INF
+COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes ./app
+ENTRYPOINT ["java", "-cp", "app:app/lib/*", "com.example.cruisemsdomain.CruiseMsDomainApplication"]
