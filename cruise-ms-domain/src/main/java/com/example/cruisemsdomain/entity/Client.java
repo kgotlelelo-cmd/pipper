@@ -12,25 +12,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data //lombok
 @AllArgsConstructor
-@Entity()
-@Table(name = "CLIENT")
+@Entity
+@Table(name = "clients")
 public class Client {
 
     @Id
-    @SequenceGenerator(
-            name = "CLIENT_sequence",
-            sequenceName = "CLIENT_sequence",
-            allocationSize = 1
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "CLIENT_sequence"
-    )
-
-    @Column(name = "clientId")
+    @Column(name = "client_id")
     private Long id;
 
     @Column(
@@ -41,14 +29,14 @@ public class Client {
     private String username;
 
     @Column(
-            name = "firstName",
+            name = "first_name",
             nullable = false,
             length = 20
     )
     private String firstName;
 
     @Column(
-            name = "secondName",
+            name = "second_name",
             nullable = false,
             length = 20
     )

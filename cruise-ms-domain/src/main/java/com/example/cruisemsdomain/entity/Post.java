@@ -3,20 +3,10 @@ package com.example.cruisemsdomain.entity;
 import javax.persistence.*;
 
 @Entity()
-@Table(name = "POST")
+@Table(name = "posts")
 public class Post {
 
     @Id
-    @SequenceGenerator(
-            name ="POST_sequence",
-            sequenceName = "POST_sequence",
-            allocationSize = 1
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "POST_sequence"
-    )
     @Column(name = "postId")
     private Long id;
 
@@ -32,7 +22,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(
-            name = "clientId",
+            name = "client_id",
             nullable = false
 
     )
