@@ -27,6 +27,7 @@ public class ClientService {
     @Autowired
     PostRepository postRepo;
 
+	  // refactor this logic or use dto
     //get all clients in the database
     public List<Client> getAllClients(){
         return clientRepo.findAll();
@@ -59,6 +60,7 @@ public class ClientService {
     }
 
 
+	  // refactor this logic or use dto
     //post a status
     //need fixing
     public Client addPost(Client newClient,Long id){
