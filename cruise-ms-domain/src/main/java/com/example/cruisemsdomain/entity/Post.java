@@ -41,7 +41,7 @@ public class Post {
     private Long likes;
 
 	  @ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "client_id", nullable = false)
+		@JoinColumn(name = "client_id")
 		@JsonIgnore
     private Client client;
 
