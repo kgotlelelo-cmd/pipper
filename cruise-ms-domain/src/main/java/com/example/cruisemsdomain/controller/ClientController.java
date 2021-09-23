@@ -56,7 +56,7 @@ public class ClientController {
 			return ResponseEntity.ok(service.getClientPosts(id));
 		}
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public Client register(@RequestBody Client newClient){
         return service.saveClient(newClient);
     }
