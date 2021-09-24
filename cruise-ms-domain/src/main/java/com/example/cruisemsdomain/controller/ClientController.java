@@ -46,15 +46,15 @@ public class ClientController {
         return service.findClientByEmail(email);
     }
 
-	  @GetMapping("/name")
+    @GetMapping("/name/{username}")
     public Optional<Client> fetchClientByUsername(@RequestParam String username){
         return service.findClientByUsername(username);
     }
 
-	  @GetMapping("/{id}/posts")
-		public ResponseEntity<List<Post>> getClientPosts(@PathVariable Long id) {
-			return ResponseEntity.ok(service.getClientPosts(id));
-		}
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> getClientPosts(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getClientPosts(id));
+    }
 
     @PostMapping
     public Client register(@RequestBody Client newClient){
