@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
 
-function callDomainApi(callback){
-    logger.info("fetching data from domain application");
-    fetch(process.env.MOCKOON_URL)
+function fetchAllClients(callback){
+    logger.info("fetching all clients from domain application");
+    fetch(process.env.MOCKOON_URL_CLIENT)
         .then(res=>res.json())
         .then(posts)
         .then(callback)
@@ -37,4 +37,4 @@ function posts(clients){
     return posts;
 }
 
-module.exports = callDomainApi;
+module.exports = fetchAllClients;
