@@ -6,10 +6,7 @@ import com.example.cruisemsdomain.entity.Post;
 import com.example.cruisemsdomain.service.PostService;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
 
@@ -28,5 +25,10 @@ public class PostController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Post> getById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(postService.findUsingId(id));
+	}
+
+	@DeleteMapping("/{id}")
+	public void deletePost(@PathVariable Long id){
+		postService.deletePost(id);
 	}
 }

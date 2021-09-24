@@ -25,4 +25,8 @@ public class PostService {
 	public Post findUsingId(Long id){
 		return postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post Not Found."));
 	}
+
+	public void deletePost(Long id){
+		postRepository.deleteById(id);
+	}
 }
