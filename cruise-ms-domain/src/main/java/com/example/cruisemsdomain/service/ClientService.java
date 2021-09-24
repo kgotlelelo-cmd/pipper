@@ -85,18 +85,4 @@ public class ClientService {
     public void deleteClient(@PathVariable Long id){
         clientRepo.deleteById(id);
     }
-
-    //Start of the post service functions
-
-    public Optional<Post> findPostById(Long id){
-        return postRepo.findById(id).isPresent() ? postRepo.findById(id):Optional.empty();
-    }
-
-    public List<Post> getAllPosts(){
-        return postRepo.findAll();
-    }
-
-    public void deletePostById(Long id){
-        postRepo.deleteById(id);
-    }
 }
