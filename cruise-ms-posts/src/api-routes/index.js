@@ -10,7 +10,7 @@ index.get("/posts",(req,res)=>{
     logger.info("Response of posts was sent");
 });
 
-index.get("/posts:id",(req,res)=>{
+index.get("/client:id/posts",(req,res)=>{
     logger.info(`the fetchPosts of specific user endpoint was called
     with ${req.body} as a parameter`);
     userPosts((value)=> res.send(value),req.body);
