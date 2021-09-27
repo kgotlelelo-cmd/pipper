@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
-logger = require('./logger');
+logger = require('../config/logger');
 
-function postToDomain(body){
+function register(body){
     logger.info("Posting into domain service");
     fetch(process.env.MOCK_REG_URL,{
         method: 'post',
@@ -14,4 +14,4 @@ function postToDomain(body){
     });
 }
 
-module.exports = postToDomain;
+module.exports = register;

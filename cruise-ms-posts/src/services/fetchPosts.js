@@ -1,12 +1,12 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
 
-function fetchPosts(callback){
+function fetchPosts(url=process.env.MOCKOON_URL_POSTS,callback){
     logger.info(
         "fetching all post from domain service"
     );
 
-    fetch(process.env.MOCKOON_URL_POSTS)
+    fetch(url)
         .then(res => res.json())
         .then(sortPosts)
         .then(callback)
