@@ -1,9 +1,9 @@
 const fetch = require("node-fetch");
 logger = require('../config/logger');
 
-function register(body){
+function register(body,url=process.env.DEV_REG_URL){
     logger.info("Posting into domain service");
-    fetch(process.env.MOCK_REG_URL,{
+    fetch(url,{
         method: 'post',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },

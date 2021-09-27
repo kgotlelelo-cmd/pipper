@@ -13,16 +13,16 @@ index.post("/register",(req,res)=>{
     res.send({sucessful:true})
 });
 
-index.get("/client",(req,res)=>{
+index.get("/clients",(req,res)=>{
     logger.info("clients endpoint was called");
     users((value) => res.send(value));
     logger.info("Done");
 
 });
 
-index.get("/client:id",(req,res)=>{
-    logger.info(`requesting client with id ${req.body}`);
-    user((value) => res.send(value));
+index.get("/clients/:id",(req,res)=>{
+    logger.info(`requesting client with id ${req.params.id}`);
+    user((value) => res.send(value),process.env.DEV_URL_CLIENT_BY_ID+req.params.id);
     logger.info("Done");
 });
 

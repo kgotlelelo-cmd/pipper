@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
 
-function fetchAllusers(url=process.env.MOCKOON_URL_CLIENT,callback){
+function fetchAllusers(callback,url=process.env.DEV_URL_CLIENTS){
     logger.info("fetching all clients from domain application");
     fetch(url)
         .then(res=>res.json())
