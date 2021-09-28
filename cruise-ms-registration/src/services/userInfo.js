@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
 
-function fetchSpecificUser(callback,url=process.env.DEV_URL_CLIENT_BY_ID){
+exports.fetchSpecificUser = function fetchSpecificUser(callback,url=process.env.DEV_URL_CLIENT_BY_ID){
     logger.info("fetching a specific clients from domain application");
     fetch(url)
         .then(res=>res.json())
@@ -12,7 +12,7 @@ function fetchSpecificUser(callback,url=process.env.DEV_URL_CLIENT_BY_ID){
         });
 }
 
-function fectchUserByEmail(callback,url=process.env.DEV_URL_CLIENT_BY_EMAIL){
+exports.fectchUserByEmail = function fectchUserByEmail(callback,url=process.env.DEV_URL_CLIENT_BY_EMAIL){
     logger.info("fetching a specific clients by email from domain application");
     fetch(url)
         .then(res=> res.json())
@@ -22,5 +22,3 @@ function fectchUserByEmail(callback,url=process.env.DEV_URL_CLIENT_BY_EMAIL){
             logger.error(err);
         });
 }
-
-module.exports = fetchSpecificUser,fectchUserByEmail;

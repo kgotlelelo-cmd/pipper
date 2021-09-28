@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const logger = require('../config/logger');
 const sortPosts = require('./fetchPosts/sortPosts');
 
-function fetchClientPosts(url=process.env.MOCKOON_URL_CLIENT_POSTS,callback,id){
+function fetchClientPosts(callback,id,url=process.env.DEV_URL_CLIENT_POSTS){
     logger.info(
         "fecthing client post from domain service"
     );
