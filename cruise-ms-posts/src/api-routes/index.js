@@ -1,7 +1,7 @@
 const express = require("express");
 const index  = express.Router();
-const fetchPosts = require('../services/fetchPosts/fetchPosts');
-const userPosts = require('../services/fetchSpecificUserPosts/fetchClientPosts');
+const {fetchPosts} = require('../services/fetchPosts');
+const userPosts = require('../services/fetchSpecificUserPosts');
 const logger = require('../config/logger');
 
 index.get("/posts",(req,res)=>{
@@ -12,8 +12,8 @@ index.get("/posts",(req,res)=>{
 
 index.get("/client:id/posts",(req,res)=>{
     logger.info(`the fetchPosts of specific user endpoint was called
-    with ${req.body} as a parameter`);
-    userPosts((value)=> res.send(value),req.body);
+    with ${req.params.id} as a parameter`);
+    userPosts((value)=> res.send(value),url=process.env.DEV_URL_CLIENT_POSTS+req.params.id+"/posts");
     logger.info("Response sent");
 
 });

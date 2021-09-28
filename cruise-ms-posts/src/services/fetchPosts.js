@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
 
-function fetchPosts(callback,url=process.env.DEV_URL_POSTS){
+exports.fetchPosts = function fetchPosts(callback,url=process.env.DEV_URL_POSTS){
     logger.info(
         "fetching all post from domain service"
     );
@@ -17,9 +17,7 @@ function fetchPosts(callback,url=process.env.DEV_URL_POSTS){
 
 }
 
-function sortPosts(posts){
+exports.sortPosts = function sortPosts(posts){
     posts.sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
     return posts;
 }
-
-module.exports =fetchPosts,sortPosts;

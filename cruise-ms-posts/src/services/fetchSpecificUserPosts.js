@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
-const sortPosts = require('./fetchPosts/sortPosts');
+const {sortPosts} = require('./fetchPosts');
 
-function fetchClientPosts(callback,id,url=process.env.DEV_URL_CLIENT_POSTS){
+function fetchClientPosts(callback,url=process.env.DEV_URL_CLIENT_POSTS){
     logger.info(
         "fecthing client post from domain service"
     );
