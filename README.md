@@ -1,5 +1,5 @@
 # pipper
-practising micro services
+practising micro services by creating mini-version of twitter using nodejs,reactjs and java
 
 ## Requirements
 
