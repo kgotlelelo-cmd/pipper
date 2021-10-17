@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const logger = require('../config/logger');
+const sortPosts = require('./sortPosts');
 
 exports.fetchPosts = function fetchPosts(callback,url=process.env.DEV_URL_POSTS){
     logger.info(
@@ -14,10 +15,4 @@ exports.fetchPosts = function fetchPosts(callback,url=process.env.DEV_URL_POSTS)
         .catch((err)=>{
             logger.error(err);
         })
-
-}
-
-exports.sortPosts = function sortPosts(posts){
-    posts.sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
-    return posts;
 }
