@@ -5,18 +5,18 @@ test('should sort post by id', () => {
     let posts = [
         {
             "id":1,
-            message:"dfdfsdfsdfsdfsdf",
-            likes:0
+            "message":"dfdfsdfsdfsdfsdf",
+            "likes":0
         },
         {
             "id":2,
-            message:"dfdfsdfsdfsdfsdf",
-            likes:0
+            "message":"dfdfsdfsdfsdfsdf",
+            "likes":0
         },
         {
             "id":3,
-            message:"dfdfsdfsdfsdfsdf",
-            likes:0
+            "message":"dfdfsdfsdfsdfsdf",
+            "likes":0
         }
     ];
 
