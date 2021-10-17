@@ -1,21 +1,23 @@
-// const index = require('../src/api-routes/index');
+const index = require('../src/api-routes/index');
 
-// const request = require("supertest");
-// const express = require("express");
-// const app = express();
+const request = require("supertest");
+const express = require("express");
+const app = express();
 
-// app.use(express.urlencoded({ extended:false}));
-// app.use("/",index);
+app.use(express.urlencoded({ extended:false}));
+app.use("/",index);
 
-// test('test posts endpoint', done=>{
+test('test posts endpoint', done=>{
 
-//     request(app)
-//         .get("/posts")
-//         .expect("Content-Type",/json/)
-//         .expect(200,done)
-// })
+    request(app)
+        .get("/posts")
+        .expect("Content-Type",/json/)
+        .expect(200,done)
+})
 
-test('2+1', () => {
-    var two = 2;
-    expect(two+1).toBe(3);
+test('specif posts of a specific user ', done => {
+    request(app)
+        .get("/client/1/posts")
+        .expect("Content-Type",/json/)
+        .expect(200, done)
 })
