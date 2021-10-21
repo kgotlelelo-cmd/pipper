@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-export class Button extends Component {
+
+export class Right extends Component {
 
     constructor(props) {
         super(props)
@@ -13,11 +14,11 @@ export class Button extends Component {
 
     render() {
         return (
-            <button
-                className="btn"
-            >{this.props.title}</button>
+            <div className="grid-item">
+                <h1>Right</h1>
+            </div>
         )
     }
 }
 
-export default Button
+export default Right
