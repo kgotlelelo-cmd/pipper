@@ -26,6 +26,7 @@ export class InputArea extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     <input
+                    className="inputArea"
                     type="text"
                     value={this.state.message}
                     onChange={this.handleChange}

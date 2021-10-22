@@ -14,7 +14,7 @@ export class LoginButton extends Component {
 
     render() {
         return (
-            <div>
+            <div className="login">
                 {
                     (this.state.isLoggin)
                     ? <Button title="Logout"/>

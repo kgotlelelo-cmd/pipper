@@ -81,7 +81,7 @@ export class Trends extends Component {
 
     render() {
         return (
-            <div>
+            <div className="trends">
             {
                 this.state.trends.map((value)=>(
                     <Trend
