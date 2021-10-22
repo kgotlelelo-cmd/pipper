@@ -24,9 +24,10 @@ export class Search extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="search" onSubmit={this.handleSubmit}>
                 <label>
                     <input
+                        className="input"
                         type="text"
                         value={this.state.message}
                         onChange={this.handleChange}
