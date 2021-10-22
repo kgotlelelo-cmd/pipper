@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from '../components/Button'
+import LoginButton from '../components/LoginButton'
 
 
 export class Left extends Component {
@@ -22,6 +23,7 @@ export class Left extends Component {
                 <Button title="Messages"/>
                 <Button title="Profile"/>
                 <Button title="More"/>
+                <LoginButton/>
             </div>
         )
     }

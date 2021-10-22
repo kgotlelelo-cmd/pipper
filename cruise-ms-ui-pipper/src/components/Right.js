@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Search from '../components/Search'
-
+import Trends from '../components/Trends'
 
 export class Right extends Component {
 
@@ -16,7 +16,8 @@ export class Right extends Component {
     render() {
         return (
             <div className="grid-item">
-                <Search/>   
+                <Search/>
+                <Trends/>
             </div>
         )
     }
