@@ -20,8 +20,8 @@ export class Tweets extends Component {
         return (
             <div>
                 {
-                    this.state.posts.map((id,message,likes)=>(
-                        <Tweet key={id} message={message} likes={likes} />
+                    this.state.posts.map((value)=>(
+                        <Tweet key={value.id} message={value.message} likes={value.likes} />
                     ))
                 }
             </div>
