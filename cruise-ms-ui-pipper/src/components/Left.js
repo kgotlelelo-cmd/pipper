@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from '../components/Button'
 
 
 export class Left extends Component {
@@ -15,7 +16,12 @@ export class Left extends Component {
     render() {
         return (
             <div className="grid-item">
-                <h1>Left</h1>
+                <Button title="Home"/>
+                <Button title="Explore"/>
+                <Button title="Notification"/>
+                <Button title="Messages"/>
+                <Button title="Profile"/>
+                <Button title="More"/>
             </div>
         )
     }
