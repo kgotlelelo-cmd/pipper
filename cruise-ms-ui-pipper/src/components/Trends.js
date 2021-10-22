@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Search from '../components/Search'
 
-
-export class Right extends Component {
+export class Trends extends Component {
 
     constructor(props) {
         super(props)
@@ -15,11 +13,10 @@ export class Right extends Component {
 
     render() {
         return (
-            <div className="grid-item">
-                <Search/>   
+            <div>
             </div>
         )
     }
 }
 
-export default Right
+export default Trends

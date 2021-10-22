@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
-// import '../css/index.css'
+import InputArea from '../components/InputArea'
+
 
 export class Center extends Component {
 
@@ -17,6 +18,7 @@ export class Center extends Component {
         return (
             <div className="grid-item">
                 <Header/>
+                <InputArea/>
             </div>
         )
     }

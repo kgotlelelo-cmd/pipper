@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+
 
 export class Button extends Component {
 
@@ -18,6 +20,10 @@ export class Button extends Component {
             >{this.props.title}</button>
         )
     }
+}
+
+Button.propTypes = {
+    title: PropTypes.string.isRequired
 }
 
 export default Button
