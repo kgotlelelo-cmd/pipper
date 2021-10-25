@@ -15,10 +15,10 @@ export class Tweet extends Component {
 
     render() {
         return (
-            <div>
+            <div className="tweet">
                 <h3>{this.props.heading}</h3>
                 <p>{this.props.message}</p>
-                <p>{this.props.likes}</p>
+                <p>{this.props.likes} likes</p>
             </div>
         )
     }
