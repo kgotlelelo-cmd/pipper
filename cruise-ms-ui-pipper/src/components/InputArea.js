@@ -32,7 +32,7 @@ export class InputArea extends Component {
                     onChange={this.handleChange}
                     />
                 </label>
-                <input type="submit" value="Submit"/>
+                <input className="inputAreaSubmit" type="submit" value="Submit"/>
             </form>
         )
     }
