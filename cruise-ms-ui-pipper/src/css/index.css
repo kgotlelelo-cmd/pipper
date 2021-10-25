@@ -5,7 +5,7 @@
 
 .grid-item {
   border: 1px solid rgba(0, 0, 0, 0.8);
-  min-width: 250px;
+  /* min-width: 250px; */
 }
 
 
@@ -51,7 +51,18 @@
 }
 
 .inputArea {
-  min-width: none;
-  min-height: none;
-  display: block
+  min-width: 300px;
+  min-height: 50px;
+  display: block;
+  margin-left: 80px;
+}
+
+.inputAreaSubmit{
+  margin-left: 80px;
+}
+
+.tweet {
+  border-top: solid;
+  border-bottom: solid;
+  border-width: 1;
 }
