@@ -1,3 +1,8 @@
 cruise-ms-posts/node_modules/
 cruise-ms-registration/node_modules/
 *.log
+cruise-ms-auth/node_modules/
+cruise-ms-auth/.env
+cruise-ms-auth/.idea/
+cruise-ms-posts/.idea/
+cruise-ms-registration/.idea/
