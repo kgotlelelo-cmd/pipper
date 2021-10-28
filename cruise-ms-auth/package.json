@@ -1,0 +1,21 @@
+{
+  "name": "cruise-ms-auth",
+  "version": "1.0.0",
+  "description": "logging in and out of the application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-openid-connect": "^2.5.1",
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "winston": "^3.3.3"
+  }
+}
