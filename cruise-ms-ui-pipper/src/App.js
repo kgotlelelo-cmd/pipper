@@ -1,29 +1,14 @@
-import React, { Component } from 'react'
-import Center from './components/Center'
-import Left from './components/Left'
-import Right from './components/Right'
-import './css/index.css';
+import React ,{Component} from "react";
+import Signup from './signup';
 
-export class App extends Component {
-
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       
+class App extends Component {
+    render() {
+        return (
+            <div>
+                <Signup></Signup>
+            </div>
+        );
     }
-  }
-  
-
-  render() {
-    return (
-      <div className="grid-container">
-      <Left/>
-      <Center/>
-      <Right/>
-      </div>
-    )
-  }
 }
 
-export default App
+export default App;
